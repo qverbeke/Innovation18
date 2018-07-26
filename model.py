@@ -41,10 +41,9 @@ myary3 = np.random.randn(100,4)
 myary4 = np.random.randn(100,4)
 for i in range(100):
     myary4[i][2]+=100
-myary5 = np.random.randn(100,4)
-for i in range(100):
-    myary5[i][2]-=100
-myary=np.concatenate((myary1, myary2,myary3,myary4,myary5), axis=0)
+
+
+myary=np.concatenate((myary1, myary2,myary3), axis=0)
 
 thing = TrainedModel(myary)
 #print(thing.classify_point([[0,0,0,-2]]))
