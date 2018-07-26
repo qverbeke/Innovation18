@@ -121,10 +121,16 @@ for item in iterdata:
     if item[0] == "1" or item[0] == "2" or item[0] == "3" or item[0] == "4":
         if item[3] == "Press":
             curvalue = item[0]
-            dict[previousvalue + curvalue][1] = dict[previousvalue + curvalue][1] + float(item[1])
+            try:
+                dict[previousvalue + curvalue][1] = dict[previousvalue + curvalue][1] + float(item[1])
+            except(KeyError):
+                pass
         elif item[3] == "Release":
             continue
-        dict[previousvalue + curvalue][0] = dict[previousvalue + curvalue][0] + 1
+        try:
+            dict[previousvalue + curvalue][0] = dict[previousvalue + curvalue][0] + 1
+        except(KeyError):
+            pass
         previousvalue = curvalue + '-'
 
 #holds avg time between keypresses across zones in order the dictionary above is formatted
@@ -266,8 +272,8 @@ feature_array.append(percent_delete_notheld)
 writer.writerow(row)
 
 writer.writerow(feature_array)
-
-requests.post("127.0.0.1:6969", data={"array": feature_array})
+print(feature_array)
+requests.post("http://127.0.0.1:6969", data={"name":"Quinny","array": feature_array})
 
 ofile.close()
 
