@@ -89,7 +89,7 @@ def timeToKey(start,end):
     return end-start
 
 def opener():
-    out = open('kb_log.csv', 'w', newline ='')
+    out = open('kb_log.csv', 'a', newline ='')
     return csv.writer(out, delimiter=',')
     
 last_time = 0.0
