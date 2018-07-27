@@ -1,7 +1,7 @@
 import requests
 
 def retrain():
-    requests.post("http://10.63.209.11:6969", data={"retrain":True})
+    requests.post("http://10.63.201.94:6969", data={"retrain":True})
 
 
 retrain()

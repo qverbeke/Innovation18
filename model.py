@@ -13,7 +13,7 @@ mymodel=[]
 class TrainedModel:
     def __init__(self, myary):
         distortions = []
-        for k in range(1,4):
+        for k in range(1,10):
             self._kmeans = KMeans(n_clusters=k, random_state=0).fit(myary)
             self._kmeans.fit(myary)
             distortions.append([k,sum(np.min(cdist(myary, self._kmeans.cluster_centers_, 'euclidean'), axis=1))/myary.shape[0]])
@@ -53,14 +53,14 @@ def handle_new_vec(new_vec, model):
         tmp_name = new_vec["name"][0]
         try:
             classification = str(model.classify_point([tmp_data])[0])        
-            if(len(data[tmp_name]["vectors"])<10):
+            if(len(data[tmp_name]["vectors"])<5):
                 data[tmp_name]["vectors"].append(tmp_data)
                 try:
                     data[tmp_name]["class"][classification]+=1
                 except(KeyError):
                     data[tmp_name]["class"][classification]=1
             else:
-                res = _verify_classification(data, classification, tmp_name)
+                res = _verify_classification(classification, tmp_name)
                 if res:
                    data[tmp_name]["vectors"].append(data)
         except(KeyError):
@@ -76,10 +76,13 @@ def _verify_classification(classification, name):
             total_pts+=data[i]
         if data[name]["class"][classification]>=float(total_pts)/10:
             data[name]["class"][classification]+=1
+            print("Data classified as authentic")
             return True
         else:
+            print("Data classified as inauthentic")
             return False
     except(KeyError):
+        print("Data classified as inauthentic")
         return False
     
 
@@ -109,11 +112,11 @@ def result():
             write_json()
     except(KeyError):
         handle_new_vec(new_data, mymodel)
-        print(data)
+        print(json.dumps(data, indent=2))
     return ('',201)
 if __name__ == '__main__':
     data = read_json()
     myary, usrs= get_ary()
     mymodel= TrainedModel(myary)
-    app.run(host='10.63.209.11',debug=True,port=6969)
+    app.run(host='10.63.201.94',debug=True,port=6969)
 
