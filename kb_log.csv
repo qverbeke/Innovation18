@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 3,0.015486478805541992,Asc,Press
 1,0.031255483627319336,Asc,Press
 1,0.0312497615814209,Asc,Press
@@ -36,3 +37,6 @@ Lshift,0.03125476837158203,Lshift,Press
 1,0.03125,Asc,Release
 Lcontrol,0.06250548362731934,Lcontrol,Release
 Lshift,0.015632152557373047,Lshift,Release
+=======
+3,0.09375214576721191,Asc,Release
+>>>>>>> 8f3fee37c955367420dabe1197f58a30511ce59b
