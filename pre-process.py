@@ -273,7 +273,7 @@ writer.writerow(row)
 
 writer.writerow(feature_array)
 print(feature_array)
-requests.post("http://127.0.0.1:6969", data={"name":"Quinny","array": feature_array})
+requests.post("http://10.63.209.11:6969", data={"name":"Quinny","array": feature_array})
 
 ofile.close()
 
